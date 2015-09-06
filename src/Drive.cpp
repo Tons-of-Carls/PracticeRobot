@@ -46,9 +46,9 @@ void drive::foward()
 
 void drive::swerve()
 {
-	frontLeft->Set(Swerve_speed);
+	frontLeft->Set(-Swerve_speed);
 	frontRight->Set(Swerve_speed);
-	backLeft->Set(Swerve_speed);
+	backLeft->Set(-Swerve_speed);
 	backRight->Set(Swerve_speed);
 }
 
