@@ -10,12 +10,12 @@
 drive::drive()
 {
 
-	frontLeft = new Talon*(1);
-	frontRight = new Talon*(2);
-	backLeft = new Talon*(3);
-	backRight = new Talon*(4);
+	frontLeft = new Talon(1);
+	frontRight = new Talon(2);
+	backLeft = new Talon(3);
+	backRight = new Talon(4);
 
-	joystick = new Joystick*(5);
+	joystick = new Joystick(5);
 
 	Foward_speed = joystick->GetY();
 	Swerve_speed = joystick->GetX();
@@ -31,8 +31,12 @@ drive::~drive()
 
 	delete joystick;
 
-	Foward_speed = NULL;
-	Swerve_speed = NULL;
+	frontLeft = NULL;
+	frontRight = NULL;
+	backLeft = NULL;
+	backRight = NULL;
+
+	joystick = NULL;
 
 }
 
