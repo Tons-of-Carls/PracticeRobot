@@ -9,34 +9,44 @@
 
 manip::manip()
 {
-	Launcher = new DoubleSolenoid(1);
+	Launcher 	= new DoubleSolenoid	(LAUNCHER_PORT);
 
-	compressor = new Compressor(2);
+	/*compressor 	= new Compressor		(COMPRESSOR_PORT);
 
-	ChooChoo = new Victor(3);
-	Rollin = new Victor(4);
+	ChooChoo 	= new Talon				(CHOO_CHOO_PORT);
+	Rollin 		= new Talon				(ROLL_IN_PORT);*/
 
-	ChooEncoder = new Encoder(5);
+	joystick	= new Joystick		(JOYSTICK_PORT);
 }
 
 manip::~manip()
 {
 	delete Launcher;
-	delete compressor;
+	/*delete compressor;
 	delete ChooChoo;
-	delete Rollin;
-	delete ChooEncoder;
+	delete Rollin;*/
+	delete joystick;
 
-	Launcher = NULL;
-	compressor = NULL;
-	ChooChoo = NULL;
-	Rollin = NULL;
-	ChooEncoder = NULL;
+
+	Launcher 	= NULL;
+	/*compressor 	= NULL;
+	ChooChoo 	= NULL;
+	Rollin 		= NULL;*/
+	joystick	=	NULL;
+
+
 }
 
-void manip::ready()
+void manip::function()
 {
-	Rollin->Set(.7);
+	if(joystick->GetRawButton(1)==true)//error: " Invalid arguments ' Candidates are: bool GetRawButton(?) ' "
+	{
+		Launcher->Set(DoubleSolenoid::kForward);
+	}
+	else
+	{
+		Launcher->Set(DoubleSolenoid::kOff);
+	}
 }
 
 

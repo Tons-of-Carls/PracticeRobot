@@ -8,7 +8,8 @@
 #ifndef SRC_MANIPULATOR_H_
 #define SRC_MANIPULATOR_H_
 
-#include "WPILib.h"
+#include "WPIlib.h"
+#include "Macros.h"
 
 class manip
 {
@@ -19,23 +20,21 @@ public:
 	~manip();
 
 
-
-	void ready();//load in a ball
-	void aim();//Find a use for this function
-	void fire();//launch the ball
-	void reset();//choochoo reset mechanism
-
+	//a switch with all the stages to resetting the launching mechanism and firing a ball
+	void function();
 
 
 private:
-	DoubleSolenoid* Launcher;
+	DoubleSolenoid* 	Launcher;
 
-	Compressor* compressor;
+	Joystick* joystick;
 
-	Victor* ChooChoo;
-	Victor* Rollin;
+	/*Compressor* 		compressor;
 
-	Encoder* ChooEncoder;
+	Talon* 				ChooChoo;
+	Talon* 				Rollin;*/
+
+
 
 };
 

@@ -4,7 +4,9 @@
  *  Created on: Sep 5, 2015
  *      Author: Carleton
  */
-#include "WPILib.h"
+#include "WPIlib.h"
+#include "Macros.h"
+
 
 #ifndef SRC_DRIVE_H_
 #define SRC_DRIVE_H_
@@ -19,20 +21,25 @@ public:
 
 
 
-	void foward();
-	void swerve();
+	void drive_control();
+
+	int getEncoderValue();
 
 private:
 
-	Talon* frontLeft;
-	Talon* frontRight;
-	Talon* backLeft;
-	Talon* backRight;
+	CANTalon* frontLeft;
+	CANTalon* frontRight;
+	CANTalon* backLeft;
+	//CANTalon* backRight;
 
 	Joystick* joystick;
 
 	float Foward_speed;
 	float Swerve_speed;
+
+
+
+	Encoder* 			ChooEncoder;
 
 };
 
