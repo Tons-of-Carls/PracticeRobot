@@ -5,6 +5,7 @@
  *      Author: Admin
  */
 
+#include "OperatorInterface.h"
 #include "Drive.h"
 #include "Manipulator.h"
 
@@ -12,17 +13,17 @@ class PracticeRobot: public IterativeRobot
 {
 private:
 	LiveWindow *lw;
-	manip* manip;
-	drive* drive;
-	OI* oi;
+	Manipulator* manipulator;
+	Drive* drive;
+	OperatorInterface* oi;
 
 	void RobotInit()
 	{
 		lw = LiveWindow::GetInstance();
 
 		drive = new drive();
-		manip = new manip();
-		oi = new OI();
+		manipulator = new Manipulator();
+		oi = new OperatorInterface();
 	}
 
 	void AutonomousInit()
@@ -42,13 +43,13 @@ private:
 
 	void TeleopPeriodic()
 	{
-		drive->drive_control();
-		manip->function();
+		drive->driveControl(oi->joystickControlY(), oi->joystickControlX());
+		manipulator->shift(oi->joystick->GetRawButton(1));
 	}
 
 	void printSmartDashboard()
 	{
-		oi->getDashboard()->PutNumber("encoder", drive->getEncoderValue());//error: " Invalid arguments 'Candidates are:void PutNumber(?, double)' "
+		oi->getDashboard()->PutNumber("Encoder Value:", drive->getEncoderValue());
 	}
 
 

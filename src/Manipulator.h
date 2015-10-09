@@ -11,30 +11,20 @@
 #include "WPIlib.h"
 #include "Macros.h"
 
-class manip
+class Manipulator
 {
 
 public:
 
-	manip();
-	~manip();
+	Manipulator();
+	~Manipulator();
 
-
-	//a switch with all the stages to resetting the launching mechanism and firing a ball
-	void function();
+	void shift(bool on);
 
 
 private:
-	DoubleSolenoid* 	Launcher;
-
-	Joystick* joystick;
-
-	/*Compressor* 		compressor;
-
-	Talon* 				ChooChoo;
-	Talon* 				Rollin;*/
-
-
+	DoubleSolenoid* Launcher;
+	Compressor* compressor;
 
 };
 

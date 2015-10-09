@@ -7,61 +7,44 @@
 #include "Drive.h"
 
 
-drive::drive()
+Drive::Drive()
+{
+	rightMotorOne = new CANTalon(RIGHT_MOTOR_ONE);
+	rightMotorTwo = new CANTalon(RIGHT_MOTOR_TWO);
+	rightMotorThree = new CANTalon(RIGHT_MOTOR_THREE);
+
+	encoder = new Encoder(ENCODER_PORT_ONE, ENCODER_PORT_TWO);
+}
+
+Drive::~Drive()
 {
 
-	frontLeft	= new CANTalon		(FRONT_LEFT_PORT);
-	frontRight	= new CANTalon		(FRONT_RIGHT_PORT);
-	backLeft	= new CANTalon		(BACK_LEFT_PORT);
-	//backRight	= new CANTalon		(BACK_RIGHT_PORT);
+	delete rightMotorOne;
+	delete rightMotorTwo;
+	delete rightMotorThree;
 
+	delete encoder;
 
-	joystick	= new Joystick		(JOYSTICK_PORT);
+	rightMotorOne =	NULL;
+	rightMotorTwo =	NULL;
+	rightMotorThree	= NULL;
 
-	ChooEncoder = new Encoder		(CHOO_ENCODER_PORT);
-
-	Foward_speed = 0;
-	Swerve_speed = 0;
+	encoder = NULL;
 
 }
 
-drive::~drive()
+void Drive::driveControl(float foward, float swerve)
 {
+	rightMotorOne->SetControlMode(CANSpeedController::kSpeed);
 
-	delete frontLeft;
-	delete frontRight;
-	delete backLeft;
-	//delete backRight;
-
-	delete joystick;
-
-	delete ChooEncoder;
-
-	frontLeft	=	NULL;
-	frontRight	=	NULL;
-	backLeft	=	NULL;
-	//backRight	=	NULL;
-
-	joystick	=	NULL;
-
-	ChooEncoder = NULL;
-
+	rightMotorOne->Set(foward);
+	rightMotorTwo->Set(foward);
+	rightMotorThree->Set(foward);
 }
 
-void drive::drive_control()
+int Drive::getEncoderValue()
 {
-	Foward_speed = joystick->GetY();
-	Swerve_speed = joystick->GetX();
-	frontLeft->SetControlMode(CANSpeedController::kSpeed);
-	frontLeft->Set((Foward_speed - Swerve_speed));
-	frontRight->Set(Foward_speed + Swerve_speed);
-	backLeft->Set(Foward_speed - Swerve_speed);
-	//backRight->Set(Foward_speed + Swerve_speed);
-}
-
-int drive::getEncoderValue()
-{
-	return ChooEncoder->Get();
+	return encoder->Get();
 }
 
 

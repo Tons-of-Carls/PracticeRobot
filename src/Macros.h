@@ -10,33 +10,30 @@
 
 
 //Drive Ports
-#define FRONT_RIGHT_PORT 		(0)
-#define FRONT_LEFT_PORT 		(1)
-//#define BACK_RIGHT_PORT 		(2)
-#define BACK_LEFT_PORT 			(2)
+#define RIGHT_MOTOR_ONE 		(0)
+#define RIGHT_MOTOR_TWO 		(1)
+#define RIGHT_MOTOR_THREE		(2)
+#define ENCODER_PORT_ONE 		(1)
+#define ENCODER_PORT_TWO		(0)
 
 
 //Manipulator Ports
-#define LAUNCHER_PORT 			(1)
-#define COMPRESSOR_PORT 		(2)
-#define CHOO_CHOO_PORT 			(3)
-#define ROLL_IN_PORT 			(4)*/
-#define CHOO_ENCODER_PORT 		(5)
+#define SHIFTER_PORT_ONE 		(0)
+#define SHIFTER_PORT_TWO		(1)
+#define COMPRESSOR_PORT 		(0)
 
 
+//Joystick values
 #define JOYSTICK_PORT			(0)
+#define DEADZONE				(.15)
 
-
-//Launcher States
-/*#define RELOAD 					(0)
-#define FIRE 					(1)
-#define RESET 					(2)
-#define HOLD 					(3)*/
+//NULL definition (if there is something wrong with NULL in other files comment this out)
+#define NULL 					((void*) 0)
 
 
 
-//NULL
-#define NULL ((void*) 0)
+
+
 
 
 

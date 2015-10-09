@@ -7,39 +7,31 @@
 
 #include "Manipulator.h"
 
-manip::manip()
+Manipulator::Manipulator()
 {
-	Launcher 	= new DoubleSolenoid	(LAUNCHER_PORT);
+	Launcher = new DoubleSolenoid(SHIFTER_PORT_ONE, SHIFTER_PORT_TWO);
+	compressor = new Compressor(COMPRESSOR_PORT);
 
-	/*compressor 	= new Compressor		(COMPRESSOR_PORT);
-
-	ChooChoo 	= new Talon				(CHOO_CHOO_PORT);
-	Rollin 		= new Talon				(ROLL_IN_PORT);*/
-
-	joystick	= new Joystick		(JOYSTICK_PORT);
+	compressor->SetClosedLoopControl(true);
 }
 
-manip::~manip()
+Manipulator::~Manipulator()
 {
 	delete Launcher;
-	/*delete compressor;
-	delete ChooChoo;
-	delete Rollin;*/
-	delete joystick;
+	delete compressor;
 
 
-	Launcher 	= NULL;
-	/*compressor 	= NULL;
-	ChooChoo 	= NULL;
-	Rollin 		= NULL;*/
-	joystick	=	NULL;
 
+	Launcher = NULL;
+	compressor = NULL;
 
 }
 
-void manip::function()
+void Manipulator::shift(bool on)
 {
-	if(joystick->GetRawButton(1)==true)//error: " Invalid arguments ' Candidates are: bool GetRawButton(?) ' "
+	compressor->Start();
+
+	if(on == true)
 	{
 		Launcher->Set(DoubleSolenoid::kForward);
 	}

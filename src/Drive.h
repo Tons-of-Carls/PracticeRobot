@@ -6,40 +6,30 @@
  */
 #include "WPIlib.h"
 #include "Macros.h"
-
+#include "OperatorInterface.h"
 
 #ifndef SRC_DRIVE_H_
 #define SRC_DRIVE_H_
 
 
-class drive
+class Drive
 {
 
 public:
-	drive();
-	~drive();
+	Drive();
+	~Drive();
 
-
-
-	void drive_control();
+	void driveControl(float forward, float swerve);
 
 	int getEncoderValue();
 
 private:
 
-	CANTalon* frontLeft;
-	CANTalon* frontRight;
-	CANTalon* backLeft;
-	//CANTalon* backRight;
+	CANTalon* rightMotorOne;
+	CANTalon* rightMotorTwo;
+	CANTalon* rightMotorThree;
 
-	Joystick* joystick;
-
-	float Foward_speed;
-	float Swerve_speed;
-
-
-
-	Encoder* 			ChooEncoder;
+	Encoder* encoder;
 
 };
 
